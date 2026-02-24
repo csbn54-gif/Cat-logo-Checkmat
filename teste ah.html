@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condições Exclusivas para Professores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #2a2a2e;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .nav-dots {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .nav-dot:hover {
+            background-color: #9ca3af;
+        }
+
+        .nav-dot.active {
+            background-color: #d4af37;
+            box-shadow: 0 0 10px #d4af37;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #d1d5db;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .logo {
+            width: 128px;
+            height: 128px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+        }
+
+        .arrow-down {
+            animation: bounce 2s infinite;
+            color: #d4af37;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            width: 100%;
+        }
+
+        .produto-card {
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+        }
+
+        .produto-card:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .produto-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 16px;
+        }
+
+        .produto-price {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .produto-recommended {
+            color: #9ca3af;
+            margin-bottom: 8px;
+        }
+
+        .produto-profit {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .tabelas-container {
+            max-width: 1152px;
+            width: 100%;
+        }
+
+        .tabela-box {
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            margin-bottom: 48px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 8px;
+        }
+
+        thead tr {
+            border-bottom: 2px solid #d4af37;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #374151;
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        .pagamento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1152px;
+            width: 100%;
+            margin-bottom: 32px;
+        }
+
+        .pagamento-card {
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .warning-text {
+            color: #ef4444;
+            font-weight: 600;
+            font-size: 1.125rem;
+            text-align: center;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 896px;
+            width: 100%;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 32px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .timeline-circle {
+            position: absolute;
+            left: 32px;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: #2a2a2e;
+            border: 4px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            z-index: 10;
+        }
+
+        .timeline-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .timeline-content {
+            margin-left: 112px;
+        }
+
+        .timeline-label {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: #d1d5db;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+            padding: 16px 48px;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #20BD5A;
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                width: 96px;
+                height: 96px;
+            }
+
+            .timeline-line {
+                left: 32px;
+            }
+
+            table {
+                font-size: 0.875rem;
+            }
+
+            th, td {
+                padding: 8px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots"></div>
+
+    <!-- Section 1: Hero -->
+    <section id="hero">
+        <div class="logos">
+            <img src="https://static.lumi.new/65/658e8a5024cae7244cc2fe493b810ac2.webp" alt="Logo Leoa" class="logo">
+            <img src="https://static.lumi.new/f3/f3a030418bda9930219d48fccf517479.webp" alt="Logo Rei" class="logo">
+        </div>
+        <h1>Condições exclusivas para professores</h1>
+        <p class="subtitle">Role para ver valores e personalização</p>
+        <div class="arrow-down">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Section 2: Produtos -->
+    <section id="produtos">
+        <h2>Produtos</h2>
+        <div class="produtos-grid">
+            <div class="produto-card">
+                <div class="produto-name">KIDS</div>
+                <div class="produto-price">R$ 280</div>
+                <div class="produto-recommended">Recomendado R$ 350</div>
+                <div class="produto-profit">Lucro R$ 70</div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-name">LIGHT</div>
+                <div class="produto-price">R$ 340</div>
+                <div class="produto-recommended">Recomendado R$ 460</div>
+                <div class="produto-profit">Lucro R$ 120</div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-name">PREMIUM</div>
+                <div class="produto-price">R$ 380</div>
+                <div class="produto-recommended">Recomendado R$ 500</div>
+                <div class="produto-profit">Lucro R$ 120</div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-name">FAIXA BRANCA</div>
+                <div class="produto-price">R$ 45</div>
+                <div class="produto-recommended">Recomendado R$ 85</div>
+                <div class="produto-profit">Lucro R$ 40</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Tabelas de Tamanhos -->
+    <section id="tabelas">
+        <h2>Tabela de Tamanhos</h2>
+        <p class="subtitle">Encontre o tamanho ideal</p>
+        
+        <div class="tabelas-container">
+            <div class="tabela-box">
+                <h3>Tabela Infantil</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>TAMANHO</th>
+                            <th>IDADE</th>
+                            <th>ALTURA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>M0</td><td>03 a 04 anos</td><td>1,00 – 1,10 m</td></tr>
+                        <tr><td>M1</td><td>05 a 06 anos</td><td>1,10 – 1,20 m</td></tr>
+                        <tr><td>M2</td><td>07 a 08 anos</td><td>1,20 – 1,30 m</td></tr>
+                        <tr><td>M3</td><td>09 a 10 anos</td><td>1,30 – 1,40 m</td></tr>
+                        <tr><td>M4</td><td>11 a 12 anos</td><td>1,40 – 1,50 m</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tabela-box">
+                <h3>Tabela Adulto</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PESO Kg</th>
+                            <th>50</th><th>55</th><th>60</th><th>65</th>
+                            <th>70</th><th>75</th><th>85</th><th>90</th>
+                            <th>95</th><th>100</th><th>120</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1,55</td><td>A0</td><td>A0</td><td>A0</td><td>A0</td><td>A0</td><td>A0</td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>1,60</td><td>A1</td><td>A1</td><td>A1</td><td>A1</td><td>A1</td><td>A1</td><td>A2</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>1,65</td><td>A1</td><td>A1</td><td>A1</td><td>A2</td><td>A2</td><td>A2</td><td>A2</td><td>A2</td><td></td><td></td><td></td></tr>
+                        <tr><td>1,70</td><td>A1</td><td>A1</td><td>A1</td><td>A2</td><td>A2</td><td>A2</td><td>A3</td><td>A3</td><td>A3</td><td></td><td></td></tr>
+                        <tr><td>1,75</td><td>A1</td><td>A1</td><td>A1</td><td>A2</td><td>A2</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A4</td><td></td></tr>
+                        <tr><td>1,80</td><td>A1</td><td>A1</td><td>A1</td><td>A2</td><td>A2</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A4</td><td>A4</td></tr>
+                        <tr><td>1,85</td><td>A1</td><td>A1</td><td>A1</td><td>A2</td><td>A2</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A4</td><td>A4</td></tr>
+                        <tr><td>1,90</td><td>A1</td><td>A1</td><td>A1</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A4</td><td>A4</td></tr>
+                        <tr><td>1,95</td><td>A1</td><td>A1</td><td>A1</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A4</td><td>A4</td></tr>
+                        <tr><td>2,00</td><td>A1</td><td>A1</td><td>A1</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A4</td><td>A4</td><td>A4</td></tr>
+                        <tr><td>2,05</td><td>A1</td><td>A1</td><td>A1</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A3</td><td>A4</td><td>A4</td><td>A4</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Formas de Pagamento -->
+    <section id="pagamento">
+        <h2>Formas de Pagamento</h2>
+        <div class="pagamento-grid">
+            <div class="pagamento-card">
+                <h3>PIX</h3>
+                <p style="margin-bottom: 8px;">5% de desconto no pagamento total antecipado</p>
+                <p style="color: #9ca3af; font-size: 0.875rem;">Frete pago posteriormente</p>
+            </div>
+            <div class="pagamento-card">
+                <h3>Cartão | Link</h3>
+                <p style="margin-bottom: 8px;">Taxas da máquina e parcelamento</p>
+                <p style="color: #9ca3af; font-size: 0.875rem;">Frete pago posteriormente</p>
+            </div>
+            <div class="pagamento-card">
+                <h3>Produção</h3>
+                <p style="margin-bottom: 8px; font-size: 0.875rem;">50% para iniciar + 50% restante + frete na finalização</p>
+                <p style="color: #9ca3af; font-size: 0.875rem;">100% + Frete na finalização</p>
+            </div>
+        </div>
+        <p class="warning-text">* Personalizados não podem ser pagos 100% depois</p>
+    </section>
+
+    <!-- Section 5: Prazo de Entrega -->
+    <section id="prazo">
+        <h2>Prazo de Entrega</h2>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="timeline-circle">
+                    <span class="timeline-number" id="counter1">1</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-label">1° Dia</div>
+                    <div class="timeline-desc">Contato + Pedido + Confirmação de Pagamento</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-circle">
+                    <span class="timeline-number" id="counter2">2</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-label">2° Dia útil</div>
+                    <div class="timeline-desc">Entra para a fila de produção</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-circle">
+                    <span class="timeline-number" id="counter3">3</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-label">3° Dia útil até 25 dias úteis</div>
+                    <div class="timeline-desc">Em produção</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-circle">
+                    <span class="timeline-number" id="counter25">25</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-label">No dia 25</div>
+                    <div class="timeline-desc">Pagamentos em abertos + Fretes + Envio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Contato -->
+    <section id="contato">
+        <h2>Vamos Montar Seu Pedido?</h2>
+        <p class="subtitle">Nossa equipe está pronta para atender você</p>
+        <a href="https://wa.me/5541996540131" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Falar no WhatsApp
+        </a>
+    </section>
+
+    <script>
+        const sections = ['hero', 'produtos', 'tabelas', 'pagamento', 'prazo', 'contato'];
+        let activeSection = 0;
+        let countersAnimated = false;
+
+        // Create navigation dots
+        const navDots = document.getElementById('navDots');
+        sections.forEach((section, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'nav-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Ir para seção ${index + 1}`);
+            dot.addEventListener('click', () => scrollToSection(index));
+            navDots.appendChild(dot);
+        });
+
+        function scrollToSection(index) {
+            const section = document.getElementById(sections[index]);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function updateActiveDot() {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            
+            sections.forEach((section, index) => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const offsetTop = element.offsetTop;
+                    const offsetBottom = offsetTop + element.offsetHeight;
+                    
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                        if (activeSection !== index) {
+                            activeSection = index;
+                            const dots = document.querySelectorAll('.nav-dot');
+                            dots.forEach((dot, i) => {
+                                dot.classList.toggle('active', i === index);
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
+        function animateCounters() {
+            if (countersAnimated) return;
+            countersAnimated = true;
+
+            const duration = 2000;
+            const steps = 60;
+            const targets = { counter1: 1, counter2: 2, counter3: 3, counter25: 25 };
+            const increments = {};
+            
+            Object.keys(targets).forEach(key => {
+                increments[key] = targets[key] / steps;
+            });
+
+            let currentStep = 0;
+            const interval = setInterval(() => {
+                currentStep++;
+                Object.keys(targets).forEach(key => {
+                    const value = Math.min(Math.floor(increments[key] * currentStep), targets[key]);
+                    document.getElementById(key).textContent = value;
+                });
+
+                if (currentStep >= steps) {
+                    clearInterval(interval);
+                }
+            }, duration / steps);
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && entry.target.id === 'prazo') {
+                        animateCounters();
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        const prazoSection = document.getElementById('prazo');
+        if (prazoSection) {
+            observer.observe(prazoSection);
+        }
+
+        window.addEventListener('scroll', updateActiveDot);
+        updateActiveDot();
+    </script>
+</body>
+</html>
