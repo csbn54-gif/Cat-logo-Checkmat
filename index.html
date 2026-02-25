@@ -298,7 +298,26 @@
             background-color: #20BD5A;
             box-shadow: 0 0 30px rgba(37, 211, 102, 0.7);
         }
+/* SCROLL HORIZONTAL NAS TABELAS (MOBILE) */
+.tabela-scroll{
+width:100%;
+overflow-x:auto;
+-webkit-overflow-scrolling:touch;
+}
 
+.tabela-scroll table{
+min-width:720px;
+}
+
+/* barra dourada */
+.tabela-scroll::-webkit-scrollbar{
+height:6px;
+}
+
+.tabela-scroll::-webkit-scrollbar-thumb{
+background:#d4af37;
+border-radius:10px;
+}
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -383,9 +402,11 @@
         <p class="subtitle">Encontre o tamanho ideal</p>
         
         <div class="tabelas-container">
-            <div class="tabela-box">
-                <h3>Tabela Infantil</h3>
-                <table>
+          <div class="tabela-box">
+    <h3>Tabela Infantil</h3>
+
+    <div class="tabela-scroll">
+        <table>
                     <thead>
                         <tr>
                             <th>TAMANHO</th>
@@ -404,8 +425,10 @@
             </div>
 
             <div class="tabela-box">
-                <h3>Tabela Adulto</h3>
-                <table>
+    <h3>Tabela Adulto</h3>
+
+    <div class="tabela-scroll">
+        <table>
                     <thead>
                         <tr>
                             <th>PESO Kg</th>
@@ -604,3 +627,4 @@
     </script>
 </body>
 </html>
+
